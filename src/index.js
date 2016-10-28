@@ -9,6 +9,7 @@ export default class ReactPaint extends Component {
     brushCol: PropTypes.string,
     lineWidth: PropTypes.number,
     onDraw: PropTypes.func,
+    imageOnCanvas:PropTypes.instanceOf(Image)
   };
   static defaultProps = {
     className: 'react-paint',
@@ -38,6 +39,9 @@ export default class ReactPaint extends Component {
     this.context.lineJoin = this.context.lineCap = 'round';
 
     this.bb = this.canvas.getBoundingClientRect();
+
+    if(this.props.imageOnCanvas)
+    this.context.drawImage(this.props.imageOnCanvas,0,0,this.props.width,this.props.height);
   }
 
   componentWillUpdate(nextProps) {

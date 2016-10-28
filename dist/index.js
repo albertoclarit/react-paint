@@ -125,9 +125,9 @@
     _createClass(ReactPaint, [{
       key: 'componentDidMount',
       value: function componentDidMount() {
-        var _props = this.props;
-        var brushCol = _props.brushCol;
-        var lineWidth = _props.lineWidth;
+        var _props = this.props,
+            brushCol = _props.brushCol,
+            lineWidth = _props.lineWidth;
 
 
         this.context = this.canvas.getContext('2d');
@@ -136,13 +136,15 @@
         this.context.lineJoin = this.context.lineCap = 'round';
 
         this.bb = this.canvas.getBoundingClientRect();
+
+        if (this.props.imageOnCanvas) this.context.drawImage(this.props.imageOnCanvas, 0, 0, this.props.width, this.props.height);
       }
     }, {
       key: 'componentWillUpdate',
       value: function componentWillUpdate(nextProps) {
-        var _props2 = this.props;
-        var brushCol = _props2.brushCol;
-        var lineWidth = _props2.lineWidth;
+        var _props2 = this.props,
+            brushCol = _props2.brushCol,
+            lineWidth = _props2.lineWidth;
 
 
         if (brushCol !== nextProps.brushCol || lineWidth !== nextProps.lineWidth) {
@@ -155,12 +157,12 @@
       value: function render() {
         var _this2 = this;
 
-        var _props3 = this.props;
-        var width = _props3.width;
-        var height = _props3.height;
-        var onDraw = _props3.onDraw;
-        var style = _props3.style;
-        var className = _props3.className;
+        var _props3 = this.props,
+            width = _props3.width,
+            height = _props3.height,
+            onDraw = _props3.onDraw,
+            style = _props3.style,
+            className = _props3.className;
 
 
         return _react2.default.createElement(
@@ -205,7 +207,8 @@
     width: _react.PropTypes.number,
     brushCol: _react.PropTypes.string,
     lineWidth: _react.PropTypes.number,
-    onDraw: _react.PropTypes.func
+    onDraw: _react.PropTypes.func,
+    imageOnCanvas: _react.PropTypes.instanceOf(Image)
   };
   ReactPaint.defaultProps = {
     className: 'react-paint',
