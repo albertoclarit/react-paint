@@ -38,6 +38,9 @@ export default class ReactPaint extends Component {
     this.context.strokeStyle = brushCol;
     this.context.lineJoin = this.context.lineCap = 'round';
 
+    this.canvas.width = this.canvas.offsetWidth;
+    this.canvas.height = this.canvas.offsetHeight;
+
     this.bb = this.canvas.getBoundingClientRect();
 
     if(this.props.imageOnCanvas)

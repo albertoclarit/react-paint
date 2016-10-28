@@ -135,6 +135,9 @@
         this.context.strokeStyle = brushCol;
         this.context.lineJoin = this.context.lineCap = 'round';
 
+        this.canvas.width = this.canvas.offsetWidth;
+        this.canvas.height = this.canvas.offsetHeight;
+
         this.bb = this.canvas.getBoundingClientRect();
 
         if (this.props.imageOnCanvas) this.context.drawImage(this.props.imageOnCanvas, 0, 0, this.props.width, this.props.height);
