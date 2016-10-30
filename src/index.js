@@ -46,7 +46,10 @@ export default class ReactPaint extends Component {
     this.bb = this.canvas.getBoundingClientRect();
 
     if(this.props.imageOnCanvas)
-    this.context.drawImage(this.props.imageOnCanvas,0,0,this.props.width,this.props.height);
+      setTimeout(()=>{
+        this.context.drawImage(this.props.imageOnCanvas,0,0,this.props.width,this.props.height);
+      },300);
+
   }
 
   componentWillUpdate(nextProps) {

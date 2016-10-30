@@ -125,6 +125,8 @@
     _createClass(ReactPaint, [{
       key: 'componentDidMount',
       value: function componentDidMount() {
+        var _this2 = this;
+
         var _props = this.props,
             brushCol = _props.brushCol,
             lineWidth = _props.lineWidth;
@@ -140,7 +142,9 @@
 
         this.bb = this.canvas.getBoundingClientRect();
 
-        if (this.props.imageOnCanvas) this.context.drawImage(this.props.imageOnCanvas, 0, 0, this.props.width, this.props.height);
+        if (this.props.imageOnCanvas) setTimeout(function () {
+          _this2.context.drawImage(_this2.props.imageOnCanvas, 0, 0, _this2.props.width, _this2.props.height);
+        }, 300);
       }
     }, {
       key: 'componentWillUpdate',
@@ -158,7 +162,7 @@
     }, {
       key: 'render',
       value: function render() {
-        var _this2 = this;
+        var _this3 = this;
 
         var _props3 = this.props,
             width = _props3.width,
@@ -173,7 +177,7 @@
           { className: className },
           _react2.default.createElement('canvas', {
             ref: function ref(c) {
-              return _this2.canvas = c;
+              return _this3.canvas = c;
             },
             className: className + '__canvas',
 
