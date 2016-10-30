@@ -95,7 +95,7 @@
           mouseLoc: [e.pageX || e.touches[0].pageX, e.pageY || e.touches[0].pageY]
         });
 
-        _this.context.moveTo((e.pageX || e.touches[0].pageX) - _this.bb.left, (e.pageY || e.touches[0].pageY) - _this.bb.top);
+        _this.context.moveTo((e.pageX || e.touches[0].pageX) - _this.bb.left, (e.pageY || e.touches[0].pageY) - (_this.bb.top + _this.props.topAdjustment));
       };
 
       _this.mouseUp = function () {
@@ -108,7 +108,7 @@
           if (e.touches) e.preventDefault();
 
           if ((e.pageX || e.touches[0].pageX) > 0 && (e.pageY || e.touches[0].pageY) < _this.props.height) {
-            _this.context.lineTo((e.pageX || e.touches[0].pageX) - _this.bb.left, (e.pageY || e.touches[0].pageY) - _this.bb.top);
+            _this.context.lineTo((e.pageX || e.touches[0].pageX) - _this.bb.left, (e.pageY || e.touches[0].pageY) - (_this.bb.top + _this.props.topAdjustment));
 
             _this.context.stroke();
           }
@@ -208,6 +208,7 @@
     style: _react.PropTypes.object.isRequired,
     height: _react.PropTypes.number,
     width: _react.PropTypes.number,
+    topAdjustment: _react.PropTypes.number,
     brushCol: _react.PropTypes.string,
     lineWidth: _react.PropTypes.number,
     onDraw: _react.PropTypes.func,
@@ -220,6 +221,7 @@
     width: 500,
     brushCol: '#ff6347',
     lineWidth: 10,
+    topAdjustment: 0,
     onDraw: function onDraw() {}
   };
   exports.default = ReactPaint;

@@ -6,6 +6,7 @@ export default class ReactPaint extends Component {
     style: PropTypes.object.isRequired,
     height: PropTypes.number,
     width: PropTypes.number,
+    topAdjustment: PropTypes.number,
     brushCol: PropTypes.string,
     lineWidth: PropTypes.number,
     onDraw: PropTypes.func,
@@ -18,6 +19,7 @@ export default class ReactPaint extends Component {
     width: 500,
     brushCol: '#ff6347',
     lineWidth: 10,
+    topAdjustment:0,
     onDraw: () => {},
   };
 
@@ -68,7 +70,7 @@ export default class ReactPaint extends Component {
 
     this.context.moveTo(
       (e.pageX || e.touches[0].pageX) - this.bb.left,
-      (e.pageY || e.touches[0].pageY) - this.bb.top
+      (e.pageY || e.touches[0].pageY) - (this.bb.top+this.props.topAdjustment)
     );
   }
 
@@ -85,7 +87,7 @@ export default class ReactPaint extends Component {
       ) {
         this.context.lineTo(
           ((e.pageX || e.touches[0].pageX) - this.bb.left),
-          ((e.pageY || e.touches[0].pageY) - this.bb.top)
+          ((e.pageY || e.touches[0].pageY) - (this.bb.top+this.props.topAdjustment))
         );
 
         this.context.stroke();
